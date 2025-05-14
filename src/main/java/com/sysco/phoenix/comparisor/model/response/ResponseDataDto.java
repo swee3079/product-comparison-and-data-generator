@@ -24,7 +24,7 @@ public class ResponseDataDto {
     @JsonProperty("Matching SUPC List")
     private List<SupcRespDto> matchingSupcList;
 
-    @JsonProperty("Un-matching & exists in graph")
+    @JsonProperty("matching but un-ordered List")
     private List<SupcRespDto> unMatchingSupcList;
 
 

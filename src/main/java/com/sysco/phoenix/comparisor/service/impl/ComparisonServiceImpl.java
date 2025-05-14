@@ -9,6 +9,7 @@ import com.sysco.phoenix.comparisor.util.ResponseCodes;
 import com.sysco.phoenix.comparisor.util.ResponseGenerator;
 import com.sysco.phoenix.comparisor.util.ResponseMessage;
 import com.sysco.phoenix.comparisor.util.Utilities;
+import jakarta.annotation.Nullable;
 import lombok.extern.log4j.Log4j2;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class ComparisonServiceImpl implements ComparisonService {
 
 
     @Override
-    public ResponseEntity<?> performFileComparison(MultipartFile csvFile, MultipartFile jsonFile) throws Exception {
+    public ResponseEntity<?> performFileComparison(MultipartFile csvFile, MultipartFile jsonFile,String sortByFlag,String sortValue) throws Exception {
         log.info("ComparisonServiceImpl => performFileComparison() => Service invoked...");
         List<SupcRespDto> matchingSupcList = new ArrayList<>();
         List<SupcRespDto> matchingUnorderedSupcList = new ArrayList<>();
@@ -42,7 +43,7 @@ public class ComparisonServiceImpl implements ComparisonService {
         int currentExecutedIndexOfGraphResponse = 0;
 
         try {
-            List<CSVRecords> audienceFileInputResultList = utilities.MultipartToCsvConverter(csvFile);
+            List<CSVRecords> audienceFileInputResultList = utilities.MultipartToCsvConverter(csvFile,sortByFlag,sortValue);
             List<GraphRequestDto> graphResponseResultList = utilities.multipartToJSONConverter(jsonFile);
 
             if (audienceFileInputResultList == null || audienceFileInputResultList.isEmpty()) {
@@ -96,13 +97,21 @@ public class ComparisonServiceImpl implements ComparisonService {
                             unMatchingSupcListWithoutExistenceInAudienceFile.add(new SupcRespDto(productIdFromGraph, null, null));
                         }
                     }
-                } else {
+                }else {
                     int notExisting = 0;
                     for (int k = 0; k <= audienceFileInputResultList.size() - 1; k++) {
                         String supcFromAudienceFile = audienceFileInputResultList.get(k).getSupc();
 
                         if (productIdFromGraph.equals(supcFromAudienceFile)) {
-                            matchingUnorderedSupcList.add(new SupcRespDto(supcFromAudienceFile, productIdFromGraph, null));
+                            boolean recordAlreadyExists=false;
+                            for(SupcRespDto record : matchingUnorderedSupcList) {
+                                if(!record.getProductIdFromAudienceInput().equals(supcFromAudienceFile)) {
+                                    recordAlreadyExists=true;
+                                }
+                            }
+                            if(!recordAlreadyExists) {
+                                matchingUnorderedSupcList.add(new SupcRespDto(supcFromAudienceFile, productIdFromGraph, null));
+                            }
                             break;
                         }
                         ++notExisting;

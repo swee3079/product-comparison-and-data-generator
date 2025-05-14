@@ -1,5 +1,6 @@
 package com.sysco.phoenix.comparisor.model;
 
+import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ public class CSVRecords {
     private String site_id;
     private String seller_id;
     private String supc;
+    @Nullable
     private String rank;
     private String start_date;
     private String end_date;

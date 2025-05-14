@@ -25,10 +25,12 @@ public class FileComparisonController {
 
     @PostMapping("/compare")
     public ResponseEntity<?> fileComparison(@NonNull @RequestParam("csvFile") MultipartFile csvFile,
-                                            @NonNull @RequestParam("jsonFile") MultipartFile jsonFile){
+                                            @NonNull @RequestParam("jsonFile") MultipartFile jsonFile,
+                                            @NonNull @RequestParam("sortBy") String sortByFlag,
+                                            @NonNull @RequestParam("sortValue") String sortValue){
         try {
             log.info("FileComparisonController => fileComparison() => Controller invoked...");
-            return comparisonService.performFileComparison(csvFile, jsonFile);
+            return comparisonService.performFileComparison(csvFile, jsonFile,sortByFlag,sortValue);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseGenerator().generateResponse(ResponseCodes.ERROR_RESP_CODE,ResponseMessage.ERROR_MESSAGE,new ResponseDataDto());
