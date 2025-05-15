@@ -6,5 +6,4 @@ public class ResponseMessage {
     public static final String ERROR_MESSAGE = "DATA COMPARISON FAILED";
     public static final String CSV_FILE_IS_EMPTY_ERROR_MESSAGE = "No Records found in audience file when sorted for ";
     public static final String JSON_FILE_IS_EMPTY_ERROR_MESSAGE = "JSON FILE IS EMPTY";
-    public static final String CSV_AND_JSON_FILE_SIZE_MISMATCH = "FILE SIZES ARE MISMATCHED";
 }
