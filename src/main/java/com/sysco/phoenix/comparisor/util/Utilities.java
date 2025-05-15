@@ -34,116 +34,45 @@ public class Utilities {
             if (sortByFlag.toCharArray().length > 0) {
                 switch (sortByFlag) {
                     case "AUD_ID":
-//                        for (String[] row : csvData) {
-//                            if (row.length < 8) {
-//                                if (row[0].equals(sortValue)) {
-//                                    csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], null, row[6], row[7]));
-//                                }
-//                            } else {
-//                                isRankColumnExists = true;
-//                                if (row[0].equals(sortValue)) {
-//                                    csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]));
-//                                }
-//                            }
-//                        }
                         HashMap<String, Object> audIdFunctionResponse = sortTheAudienceFileForGiveSortFlagAndSortValue(csvData, sortValue, 0);
                         isRankColumnExists = (Boolean) audIdFunctionResponse.get("BooleanVal");
                         csvFileWithRecords = (List<CSVRecords>) audIdFunctionResponse.get("ListVal");
                         break;
-                    case "ACC_ID":
-//                        for (String[] row : csvData) {
-//                            if (row.length < 8) {
-//                                if (row[1].equals(sortValue)) {
-//                                    csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], null, row[6], row[7]));
-//                                }
-//                            } else {
-//                                isRankColumnExists = true;
-//                                if (row[1].equals(sortValue)) {
-//                                    csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]));
-//                                }
-//                            }
-//                        }
 
+                    case "ACC_ID":
                         HashMap<String, Object> accIdFunctionResponse = sortTheAudienceFileForGiveSortFlagAndSortValue(csvData, sortValue, 1);
                         isRankColumnExists = (Boolean) accIdFunctionResponse.get("BooleanVal");
                         csvFileWithRecords = (List<CSVRecords>) accIdFunctionResponse.get("ListVal");
                         break;
-                    case "SITE_ID":
-//                        for (String[] row : csvData) {
-//                            if (row.length < 8) {
-//                                if (row[2].equals(sortValue)) {
-//                                    csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], null, row[6], row[7]));
-//                                }
-//                            } else {
-//                                isRankColumnExists = true;
-//                                if (row[2].equals(sortValue)) {
-//                                    csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]));
-//                                }
-//                            }
-//                        }
 
+                    case "SITE_ID":
                         HashMap<String, Object> siteIdFunctionResponse = sortTheAudienceFileForGiveSortFlagAndSortValue(csvData, sortValue, 2);
                         isRankColumnExists = (Boolean) siteIdFunctionResponse.get("BooleanVal");
                         csvFileWithRecords = (List<CSVRecords>) siteIdFunctionResponse.get("ListVal");
                         break;
                     case "SELLER_ID":
-//                        for (String[] row : csvData) {
-//                            if (row.length < 8) {
-//                                if (row[3].equals(sortValue)) {
-//                                    csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], null, row[6], row[7]));
-//                                }
-//                            } else {
-//                                isRankColumnExists = true;
-//                                if (row[3].equals(sortValue)) {
-//                                    csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]));
-//                                }
-//                            }
-//                        }
 
                         HashMap<String, Object> sellerIdFunctionResponse = sortTheAudienceFileForGiveSortFlagAndSortValue(csvData, sortValue, 3);
                         isRankColumnExists = (Boolean) sellerIdFunctionResponse.get("BooleanVal");
                         csvFileWithRecords = (List<CSVRecords>) sellerIdFunctionResponse.get("ListVal");
                         break;
+
                     case "RANK":
                         for (String[] row : csvData) {
                             if (row[5].equals(sortValue)) {
-                                csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], null, row[6], row[7]));
+                                csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]));
                             }
                         }
                         break;
-                    case "START_DATE":
-//                        for (String[] row : csvData) {
-//                            if (row.length < 8) {
-//                                if (row[6].equals(sortValue)) {
-//                                    csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], null, row[6], row[7]));
-//                                }
-//                            } else {
-//                                isRankColumnExists = true;
-//                                if (row[6].equals(sortValue)) {
-//                                    csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]));
-//                                }
-//                            }
-//                        }
 
-                        HashMap<String, Object> startDateFunctionResponse = sortTheAudienceFileForGiveSortFlagAndSortValue(csvData, sortValue, 6);
+                    case "START_DATE":
+                        HashMap<String, Object> startDateFunctionResponse = sortTheAudienceFileForGiveSortFlagAndSortValue(csvData, sortValue, csvData.get(0).length < 8 ? 5 : 6);
                         isRankColumnExists = (Boolean) startDateFunctionResponse.get("BooleanVal");
                         csvFileWithRecords = (List<CSVRecords>) startDateFunctionResponse.get("ListVal");
                         break;
-                    case "END_DATE":
-//                        for (String[] row : csvData) {
-//                            if (row.length < 8) {
-//                                if (row[7].equals(sortValue)) {
-//                                    csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], null, row[6], row[7]));
-//                                }
-//                            } else {
-//                                isRankColumnExists = true;
-//                                if (row[7].equals(sortValue)) {
-//                                    csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]));
-//                                }
-//                            }
-//                        }
 
-                        HashMap<String, Object> endDateFunctionResponse = sortTheAudienceFileForGiveSortFlagAndSortValue(csvData, sortValue, 7);
+                    case "END_DATE":
+                        HashMap<String, Object> endDateFunctionResponse = sortTheAudienceFileForGiveSortFlagAndSortValue(csvData, sortValue, csvData.get(0).length < 8 ? 6 : 7);
                         isRankColumnExists = (Boolean) endDateFunctionResponse.get("BooleanVal");
                         csvFileWithRecords = (List<CSVRecords>) endDateFunctionResponse.get("ListVal");
                         break;
@@ -151,7 +80,7 @@ public class Utilities {
             } else {
                 for (String[] row : csvData) {
                     if (row.length < 8) {
-                        csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], null, row[6], row[7]));
+                        csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], null, row[5], row[6]));
                     } else {
                         isRankColumnExists = true;
                         csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]));
@@ -179,7 +108,7 @@ public class Utilities {
         for (String[] row : csvData) {
             if (row.length < 8) {
                 if (row[index].equals(sortValue)) {
-                    csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], null, row[6], row[7]));
+                    csvFileWithRecords.add(new CSVRecords(row[0], row[1], row[2], row[3], row[4], null, row[5], row[6]));
                 }
             } else {
                 isRankColumnExists = true;

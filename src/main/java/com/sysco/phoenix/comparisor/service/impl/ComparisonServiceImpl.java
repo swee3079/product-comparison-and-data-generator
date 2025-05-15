@@ -49,7 +49,7 @@ public class ComparisonServiceImpl implements ComparisonService {
             if (audienceFileInputResultList == null || audienceFileInputResultList.isEmpty()) {
                 return responseGenerator.generateResponse(
                         ResponseCodes.ERROR_RESP_CODE,
-                        ResponseMessage.CSV_FILE_IS_EMPTY_ERROR_MESSAGE,
+                        ResponseMessage.CSV_FILE_IS_EMPTY_ERROR_MESSAGE+sortByFlag+" with value "+sortValue,
                         null);
             }
 
