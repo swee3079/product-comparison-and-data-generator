@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Component
 public class Utilities {
@@ -144,5 +146,42 @@ public class Utilities {
             e.printStackTrace();
             return null;
         }
+    }
+
+
+    public byte[] customAudienceFileGenerator(List<GraphRequestDto> graphRequestDtoList,String audienceId, String accountId, String startDate, String endDate) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("audience_id,account_id,site_id,seller_id,supc,start_date,end_date").append("\n");
+
+        for (GraphRequestDto dto : graphRequestDtoList) {
+            sb.append(audienceId).append(",");
+            sb.append(accountId).append(",");
+            sb.append(dto.getSiteId()).append(",");
+            sb.append(dto.getSellerId()).append(",");
+            sb.append(dto.getProductId()).append(",");
+            sb.append(" ").append(",");
+            sb.append(startDate).append(",");
+            sb.append(endDate).append("\n");
+        }
+
+        return sb.toString().getBytes(StandardCharsets.UTF_8);
+    }
+
+    public byte[] staticAudienceFileGenerator(List<GraphRequestDto> graphRequestDtoList,String audienceId, String accountId, String startDate, String endDate) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("audience_id,account_id,site_id,seller_id,supc,rank,start_date,end_date").append("\n");
+
+        for (GraphRequestDto dto : graphRequestDtoList) {
+            sb.append(audienceId).append(",");
+            sb.append(accountId).append(",");
+            sb.append(dto.getSiteId()).append(",");
+            sb.append(dto.getSellerId()).append(",");
+            sb.append(dto.getProductId()).append(",");
+            sb.append(ThreadLocalRandom.current().nextInt(1, 10)).append(",");
+            sb.append(startDate).append(",");
+            sb.append(endDate).append("\n");
+        }
+
+        return sb.toString().getBytes(StandardCharsets.UTF_8);
     }
 }

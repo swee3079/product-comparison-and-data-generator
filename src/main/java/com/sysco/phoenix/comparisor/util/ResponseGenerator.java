@@ -12,7 +12,7 @@ public class ResponseGenerator {
 
     public ResponseEntity<?> generateResponse(String responseCode, String responseMessage, ResponseDataDto data){
             return new ResponseEntity<>(
-                    new ResponseDTO(responseCode, responseMessage, data),
+                    new ResponseDTO(responseMessage, data),
                     responseCode.equals(ResponseCodes.SUCCESS_RESP_CODE) ? HttpStatus.OK : HttpStatus.BAD_REQUEST
             );
     }

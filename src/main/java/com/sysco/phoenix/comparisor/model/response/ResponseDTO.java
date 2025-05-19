@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Component
 public class ResponseDTO {
-    private String responseCode;
     private String responseMessage;
     private ResponseDataDto data;
 }

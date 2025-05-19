@@ -14,7 +14,6 @@ import java.util.List;
 @Component
 public class ResponseDataDto {
 
-
     @JsonProperty("Total SUPCs from graph response")
     private int graphResponseProductCount;
 
