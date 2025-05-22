@@ -159,7 +159,6 @@ public class Utilities {
             sb.append(dto.getSiteId()).append(",");
             sb.append(dto.getSellerId()).append(",");
             sb.append(dto.getProductId()).append(",");
-            sb.append(" ").append(",");
             sb.append(startDate).append(",");
             sb.append(endDate).append("\n");
         }
